@@ -60,7 +60,7 @@ function setting_all($keys='')
 			$a_return = array();
 			// $result = $result->value;
 			foreach ($result as $key => $value) {
-				$a_return[$value['setting_id']] = array('setting_type' => $value['setting_type'], 'setting_name' =>  $value['setting_name'], 'setting_value' => $value['setting_value']);
+				$a_return[$value['id']] = array('setting_type' => $value['setting_type'], 'setting_name' =>  $value['setting_name'], 'setting_value' => $value['setting_value']);
 			}
 			return $result;
 		}

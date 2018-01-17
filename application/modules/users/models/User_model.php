@@ -102,7 +102,7 @@ class User_model extends CI_Model {
 	function get_users($userID = '') {
 		$this->db->where('is_deleted', '0');                  
 		if(isset($userID) && $userID !='') {
-			$this->db->where('users_id', $userID); 
+			$this->db->where('user_id', $userID); 
 		} else if($this->session->userdata('user_details')[0]->user_type == 'admin') {
 			$this->db->where('user_type', 'admin'); 
 		} else {
@@ -113,11 +113,43 @@ class User_model extends CI_Model {
   	}
 
   	/**
+   	  * This function is used to get users
+   	  */
+	public function get_user_details($fields = null, $where = array(), $offset = null, $limit = null) {
+		
+		if($fields){
+			$this->db->select($fields);
+		}
+		return $this->db->get_where('cb_users', $where, $limit, $offset)->result();
+    }
+
+  	/**
       * This function is used to get email template  
       */
   	function get_template($code){
 	  	$this->db->where('code', $code);
 	  	return $this->db->get('templates')->row();
+	}
+
+	/**
+    * User registration functionality
+    */
+  	public function userRegistration($data){
+
+  		$userData['user_name'] 	= $data['user_name'];
+  		$userData['password'] 	= password_hash($data['password'], PASSWORD_DEFAULT);
+  		$userData['user_type'] 	= $data['user_type'];
+  		unset($data['user_name']);
+  		unset($data['password']);
+  		unset($data['user_type']);
+
+	  	$data['user_id'] = $this->insertRow('cb_users', $userData);
+
+	  	if($data['user_id'] > 0){
+	  		return $this->insertRow('cb_user_details', $data);
+	  	}else{
+	  		throw new Exception("User registration failed", 10);
+	  	}
 	}
 
 	/**

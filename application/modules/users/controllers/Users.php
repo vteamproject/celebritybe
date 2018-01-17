@@ -69,7 +69,7 @@ class Users extends MY_Controller {
 
                 $a_settings = setting_all('talents_category');
                 // $this->load->view('include/script');
-                $this->load->admin_template('register', array('a_settings'=>$a_settings));
+                $this->load->admin_template('register', $a_settings);
             }
         /*}
         else {

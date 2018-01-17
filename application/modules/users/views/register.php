@@ -146,7 +146,9 @@
 												<?php
 												if(!empty($a_settings)){
 													foreach ($a_settings as $key => $talent_cat) {
-														echo "<option value=".$talent_cat['setting_id'].">".$talent_cat['setting_name']."</option>";
+														foreach ($talent_cat as $setting_key => $setting_value) {
+															// echo "<option value=''>".."</option>";
+														}
 													}
 												}
 												?>

@@ -4,17 +4,23 @@
  */
 class Setting_model extends CI_Model {
 
+	private $table  = '';
+
 	function __construct(){            
 	    parent::__construct();
 	    $this->load->database();
+	    $this->table = 'cb_setting';
 	} 
    
     /**
    	  * This function is used to get settings 
    	  */
-	public function get_setting() {	
+	public function get_setting($fields = null, $where = array(), $offset = null, $limit = null) {
 		
-		return $this->db->get('cb_setting')->result();
+		if($fields){
+			$this->db->select($fields);
+		}
+		return $this->db->get_where($this->table, $where, $limit, $offset)->result();
     }
  	
  	/**
