@@ -168,4 +168,22 @@ class User_model extends CI_Model {
 		$this->db->update($table,$data);
 		return true;
   	}
+
+  	public function getPlans(){
+  		$this->db->select('*');
+        $this->db->from('cb_plans');
+        $query = $this->db->get();
+        return $result = $query->result();
+  	}
+  	public function getAllPlanData($id)
+  	{
+  		//$this->db->select('cb_plans.*, cb_plan_meta.*')
+  		$query = "SELECT `cb_plan_meta`.*, `cb_plans`.*, `cb_setting`.* FROM `cb_plan_meta` 
+				LEFT JOIN `cb_plans` ON `cb_plans`.`plan_id` = `cb_plan_meta`.`plan_id`
+				LEFT JOIN `cb_setting` ON `cb_setting`.`setting_id` = `cb_plan_meta`.`feature_type`
+				WHERE `cb_plans`.`plan_id` = ".$id." AND (`cb_setting`.`setting_name` = 'Images' OR `cb_setting`.`setting_name` = 'Videos')";
+		$res = $this->db->query($query);
+
+		return $res->result_array();
+  	}
 }

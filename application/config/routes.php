@@ -56,6 +56,8 @@ $route['cb-login'] 		= 'users/login';
 $route['auth-user'] 	= 'users/auth_user';
 $route['register'] 		= 'users/registration';
 $route['profiles'] 		= 'users/profiles';
+$route['getplandata']	= 'users/getplandata';
+$route['checkUserName'] = 'users/checkUserName';
 
 $route['404_override'] 	= '';
 $route['translate_uri_dashes'] = FALSE;

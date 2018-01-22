@@ -1,6 +1,9 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo asset_url('admin/js/jquery.js'); ?>"></script>
     <script src="<?php echo asset_url('admin/js/jquery-ui.js'); ?>"></script>
+    <script src="<?php echo asset_url('admin/js/jquery.validate.min.js'); ?>"></script>
+    <script src="<?php echo asset_url('admin/js/notify.min.js'); ?>"></script>
+    <script src="<?php echo asset_url('admin/js/custom-noty.js'); ?>"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo asset_url('admin/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
@@ -10,6 +13,9 @@
     <script src="<?php echo asset_url('admin/vendors/mask/jquery.maskedinput.min.js'); ?>"></script>
     <script src="<?php echo asset_url('admin/vendors/moment/moment.min.js'); ?>"></script>
     <script src="<?php echo asset_url('admin/vendors/wizard/jquery.bootstrap.wizard.min.js'); ?>"></script>
+
+    <script src="<?php echo asset_url('admin/js/custom.validate.js'); ?>"></script>
+    <script src="<?php echo asset_url('admin/js/register-js.js'); ?>"></script>
 
      <!-- bootstrap-datetimepicker -->
      <link href="<?php echo  asset_url('admin/vendors/bootstrap-datetimepicker/datetimepicker.css'); ?>" rel="stylesheet">

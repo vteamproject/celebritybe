@@ -194,6 +194,31 @@ function fileUpload()
 	}
 }
 
+function cb_fileUpload($in_name)
+{	
+	$CI =& get_instance();
+ 	$CI->load->library('email');
+ 	$file_names = array();
+ 	$filesCount = count($_FILES[$in_name]['name']);
+	for($i = 0; $i < $filesCount; $i++)
+	{
+		$filename=$_FILES[$in_name]['name'][$i];
+		$tmpname=$_FILES[$in_name]['tmp_name'][$i]; 
+		$exp=explode('.', $filename);
+		$ext=end($exp);
+		$newname=  $exp[0].'_'.time().".".$ext; 
+		$config['upload_path'] = 'assets/admin/images/';
+		$config['upload_url'] =  base_url().'assets/admin/images/';
+		$config['allowed_types'] = "gif|jpg|jpeg|png|iso|dmg|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|sxc|sxi|txt|exe|avi|mpeg|mp3|mp4|3gp";
+		$config['max_size'] = '2000000'; 
+		$config['file_name'] = $newname;
+		$CI->load->library('upload', $config);
+		move_uploaded_file($tmpname,"assets/admin/images/".$newname);
+		$file_names[] = $newname;
+	}
+	return $file_names;
+}
+
 function is_login()
 { 
   	if(isset($_SESSION['user_details'])){
